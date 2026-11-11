@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>دخول الإدارة</title>
+</head>
+<body>
+    <main class="container narrow">
+        <section class="panel">
+            <h2>🔐 لوحة الإدارة</h2>
+            <form method="post" action="/admin/login">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <label>كلمة المرور:<input type="password" name="password" required autofocus></label>
+                <button class="submit">دخول</button>
+            </form>
+        </section>
+    </main>
+    <script src="/static/lang.js"></script>
+</body>
+</html>
