@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>لوحة الإدارة - الطلبات</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .logout { color: red; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <main class="container" style="max-width: 95%;">
+        <h2>📋 الطلبات المسجلة</h2>
+        <a href="/admin/logout" class="logout">تسجيل خروج</a>
+        <table>
+            <tr>
+                <th>التاريخ</th><th>الجهة</th><th>الاسم</th><th>الجوال</th><th>الدورات</th><th>المدينة</th><th>ملاحظات</th>
+            </tr>
+            {% for reg in regs %}
+            <tr>
+                <td>{{ reg.date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ reg.organization }}</td>
+                <td>{{ reg.full_name }}</td>
+                <td>{{ reg.phone }}</td>
+                <td>{{ reg.courses }}</td>
+                <td>{{ reg.city }}</td>
+                <td>{{ reg.notes }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% if not regs %}
+        <p style="text-align: center; margin-top: 20px;">لا توجد طلبات حتى الآن.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
