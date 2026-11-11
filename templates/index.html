@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>شهائد معتمدة للدورات الصحية</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="container">
+<header class="hero">
+<div class="small">بوابة التسجيل</div>
+<h2>🌟 احصل على شهاداتك المعتمدة 🌟</h2>
+<p>نستقبل طلبات التسجيل لدى الجهات التدريبية التالية:</p>
+<p>🇺🇸 جمعية القلب الأمريكية (AHA)</p>
+<p>🇸🇦 جمعية القلب السعودية (SHA)</p>
+</header>
+<section class="notice">
+<h3>⚠️ تعليمات هامة قبل التسجيل:</h3>
+<p><b>1- دقة البيانات:</b> تأكد من كتابة جميع بياناتك الشخصية بالشكل الصحيح.</p>
+<p><b>2- رقم الواتساب:</b> لازم يكون الرقم المسجل في النموذج مفعل على الواتساب عشان نقدر نتواصل معك.</p>
+<p><b>3- آلية الدفع:</b> سيتم توضيح رسوم التسجيل والتدريب عبر التواصل معك.</p>
+<p><b>4- استلام الشهادة:</b> تصدر الشهادة من الجهة التدريبية المخولة بعد استيفاء متطلبات التدريب والتقييم، وفق إجراءاتها الرسمية.</p>
+<p class="muted">💡 جاهز تبدأ؟ سجّل بياناتك في النموذج المخصص، وبنخدمك بكل سرور!</p>
+</section>
+<div class="cards">
+<button class="org aha" onclick="showForm('AHA')">
+<span class="flag">🇺🇸</span><strong>جمعية القلب الأمريكية</strong><b>AHA</b><small>عرض نموذج التسجيل</small>
+</button>
+<button class="org sha" onclick="showForm('SHA')">
+<span class="flag">🇸🇦</span><strong>جمعية القلب السعودية</strong><b>SHA</b><small>عرض نموذج التسجيل</small>
+</button>
+</div>
+<section id="registration" class="panel hidden">
+<h2 id="formTitle">نموذج التسجيل</h2>
+<form action="/submit" method="post">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input type="hidden" name="organization" id="organization">
+<h3>اختر الدورات المراد التسجيل بها:</h3>
+<div class="course-grid">
+<label class="course"><input type="checkbox" name="courses" value="BLS"> BLS</label>
+<label class="course"><input type="checkbox" name="courses" value="ACLS"> ACLS</label>
+<label class="course"><input type="checkbox" name="courses" value="PALS"> PALS</label>
+<label class="course"><input type="checkbox" name="courses" value="NRP"> NRP</label>
+<label class="course"><input type="checkbox" name="courses" value="CPR"> CPR</label>
+<label class="course"><input type="checkbox" name="courses" value="ATLS"> ATLS</label>
+</div>
+<h3>البيانات المطلوبة</h3>
+<label>الاسم الرباعي بالإنجليزي:<input name="full_name" required maxlength="150" placeholder="Full name in English"></label>
+<label>البريد الإلكتروني:<input type="email" name="email" required></label>
+<label>رقم التصنيف المهني:
+<input name="classification" required maxlength="100" placeholder="رقم التصنيف أو اكتب طالب">
+<small class="muted">إذا كنت طالبًا، اكتب «طالب» ولا يلزمك رقم تصنيف مهني.</small>
+</label>
+<label>رقم الإقامة أو الهوية:<input name="identity" required></label>
+<label>المدينة:<input name="city" required></label>
+<label>تاريخ الميلاد:<input type="date" name="birthdate" required></label>
+<label>رقم الجوال (مسجل على واتساب):<input type="tel" name="phone" required placeholder="+966..."></label>
+<label>أخرى / ملاحظات إضافية (اختياري):
+<textarea name="notes" rows="3" maxlength="2000" placeholder="اكتب أي معلومات إضافية إن وجدت..."></textarea></label>
+<p class="muted">تُستخدم بياناتك لمعالجة طلب التسجيل والتواصل معك فقط، ولا تظهر للعملاء الآخرين.</p>
+<button class="submit" type="submit">إرسال طلب التسجيل</button>
+</form>
+</section>
+<footer>بوابة استقبال طلبات التسجيل • <a href="/admin/login">دخول الإدارة</a></footer>
+</main>
+<script>
+function showForm(org){
+document.getElementById('organization').value=org;
+document.getElementById('formTitle').textContent='نموذج التسجيل - '+org;
+document.getElementById('registration').classList.remove('hidden');
+document.getElementById('registration').scrollIntoView({behavior:'smooth'});
+if(window.applySiteLanguage) window.applySiteLanguage();
+}
+</script>
+<script src="/static/lang.js"></script><div class="support-entry"><a href="/contact">💬 الدعم الفني | تواصل معنا</a></div>
+</body>
+</html>
